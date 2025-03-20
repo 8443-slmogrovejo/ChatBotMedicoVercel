@@ -6,7 +6,6 @@ import { z } from 'zod'
 
 export const maxDuration = 30
 
-// Función para cargar el CSV de forma eficiented
 async function loadCsvData(): Promise<any[]> {
   const dataset: any[] = []
 
@@ -39,7 +38,6 @@ function calculateSimilarity(query: string, text: string): number {
   return score
 }
 
-// Filtrar las entradas relevantes basadas en la consulta
 function filterRelevantData(query: string, dataset: any[]) {
   const relevantEntries = []
 
@@ -55,21 +53,17 @@ function filterRelevantData(query: string, dataset: any[]) {
   return relevantEntries
 }
 
-// Crear la función para generar la consulta a OpenAI
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json()
-    const query = messages[messages.length - 1].content // La última entrada es la consulta del usuario
+    const query = messages[messages.length - 1].content
 
-    // Cargar el dataset
     const dataset = await loadCsvData()
 
-    // Filtrar las entradas relevantes del dataset
     const relevantData = filterRelevantData(query, dataset)
 
     const relevantDataSnippet = relevantData.slice(0, 5);
 
-    // Enviamos las entradas filtradas a OpenAI para generar la respuesta
     const openAIResult = generateObject({
       model: openai("gpt-3.5-turbo"),
       messages: [
