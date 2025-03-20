@@ -12,8 +12,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Home() {
   const [query, setQuery] = useState("")
-  const [results, setResults] = useState<any>(null)
+  const [results, setResults] = useState<SearchResult | null>(null);
   const [loading, setLoading] = useState(false)
+
+  interface SearchResult {
+    condition: string;
+    advice: string;
+    description: string;
+    urgency: string;
+    found: boolean;
+  }
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +79,7 @@ export default function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>Results for: {query}</CardTitle>
-                  <CardDescription>Based on your symptoms, here's our suggests</CardDescription>
+                  <CardDescription>Based on your symptoms, here&apos;s our suggests</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {results.found ? (

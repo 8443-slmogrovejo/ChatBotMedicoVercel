@@ -11,8 +11,12 @@ export default function TestPage() {
       const response = await fetch("/api/test")
       const data = await response.json()
       setResult(data)
-    } catch (error) {
-      setResult({ success: false, error: (error as any).message })
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setResult({ success: false, error: error.message })
+      } else {
+        setResult({ success: false, error: 'An unknown error occurred' })
+      }
     } finally {
       setLoading(false)
     }

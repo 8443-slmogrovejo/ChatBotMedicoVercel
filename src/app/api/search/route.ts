@@ -6,8 +6,14 @@ import { z } from 'zod'
 
 export const maxDuration = 30
 
-async function loadCsvData(): Promise<any[]> {
-  const dataset: any[] = []
+interface CsvEntry {
+  Description: string;
+  Patient: string;
+  Doctor: string;
+}
+
+async function loadCsvData(): Promise<CsvEntry[]> {
+  const dataset: CsvEntry[] = []
 
   return new Promise((resolve, reject) => {
     fs.createReadStream('data/ai-medical-chatbot.csv')
@@ -38,7 +44,7 @@ function calculateSimilarity(query: string, text: string): number {
   return score
 }
 
-function filterRelevantData(query: string, dataset: any[]) {
+function filterRelevantData(query: string, dataset: CsvEntry[]) {
   const relevantEntries = []
 
   for (const entry of dataset) {
