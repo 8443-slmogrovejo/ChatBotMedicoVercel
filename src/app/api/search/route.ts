@@ -17,8 +17,8 @@ async function loadCsvData(): Promise<CsvEntry[]> {
   const dataset: CsvEntry[] = []
 
   return new Promise((resolve, reject) => {
-    const absolutePath = path.resolve(__dirname, '../../../data/ai-medical-chatbot.csv');
-    fs.createReadStream(absolutePath)
+    const datasetPath = path.join(process.cwd(), 'src/data/ai-medical-chatbot.csv')
+    fs.createReadStream(datasetPath)
       .pipe(csv())
       .on('data', (row) => {
         dataset.push(row)
