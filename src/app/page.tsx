@@ -101,24 +101,24 @@ export default function Home() {
                       {results.urgency && (
                         <Alert
                           className={
-                            results.urgency === "high"
+                            results.urgency === "High"
                               ? "bg-red-50 border-red-200 text-red-800"
-                              : results.urgency === "medium"
+                              : results.urgency === "Medium"
                                 ? "bg-yellow-50 border-yellow-200 text-yellow-800"
                                 : "bg-blue-50 border-blue-200 text-blue-800"
                           }
                         >
                           <AlertTitle>
-                            {results.urgency === "high"
+                            {results.urgency === "High"
                               ? "Seek immediate medical attention"
-                              : results.urgency === "medium"
+                              : results.urgency === "Medium"
                                 ? "Medical attention recommended"
                                 : "Self-care may be appropriate"}
                           </AlertTitle>
                           <AlertDescription>
-                            {results.urgency === "high"
+                            {results.urgency === "High"
                               ? "These symptoms may require urgent medical care."
-                              : results.urgency === "medium"
+                              : results.urgency === "Medium"
                                 ? "Consider consulting with a healthcare provider."
                                 : "Monitor your symptoms and consult a doctor if they worsen."}
                           </AlertDescription>
