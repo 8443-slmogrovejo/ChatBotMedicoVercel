@@ -83,7 +83,7 @@ export async function POST(req: Request) {
       ],
       schema: z.object({
         condition: z.string().describe("Technical medical possible condition the user could have based on the symptoms"),
-        advice: z.string().describe("Give 3 to 5 detailed instructions in a paragraph based on the doctors advice in the dataset. Focus on the treatment and approach mentioned. Avoid general advice or asking the user to visit a doctor, and make sure the response stays aligned with the doctors guidance in the dataset."),
+        advice: z.string().describe("Give 3 to 5 detailed instructions in a paragraph based on the doctors advice in the dataset. Focus on the treatment and approach mentioned. Avoid general advice or asking the user to visit a doctor, and make sure the response stays aligned with the doctors guidance in the dataset. Only if the sypmtoms of the query doesnt not exceed 100 characters, you can ignore the dataset and provide a general advice."),
         description: z.string().describe("A technical medical description of the type of injury or illness the user has"),
         urgency: z.string().describe("Classify the importance of a quick reaction to the possible problem. Use 'Low', 'Medium', or 'High' as possible values"),
         found: z.boolean().describe("Indicates whether relevant data was found for the query")
